@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="MemDAO">
+
+	<resultMap type="mem" id="memResult">
+		<id property="memId" column="memId" />
+		<result property="memPw" column="memPw" />
+		<result property="memName" column="memName" />
+		<result property="memEmail" column="memEmail" />
+		<result property="memDistin" column="memDistin" />
+	</resultMap>
+	<select id="getMem" resultMap="memResult">
+		<![CDATA[
+			SELECT * FROM MEM WHERE MEMID=#{memId} and MEMPW=#{memPw}
+		]]>
+	</select>
+	<insert id="insertMem">
+		<![CDATA[
+			INSERT INTO MEM VALUES(#{memId},#{memPw},#{memName},#{memEmail},#{memDistin})
+		]]>
+	</insert>
+	<update id="updateMem">
+		<![CDATA[
+			UPDATE MEM SET MEMPW=#{memPw},MEMNAME=#{memName},MEMEMAIL=#{memEmail} WHERE MEMID=#{memId}
+		]]>
+	</update>
+	<delete id="deleteMem">
+		<![CDATA[
+			DELETE MEM WHERE MEMID=#{memId}
+		]]>
+	</delete>
+</mapper>

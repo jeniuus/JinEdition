@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="YachtDAO">
+
+   <resultMap type="yacht" id="yachtResult">
+      <id property="yachtPk" column="yachtPk" />
+      <result property="yachtName" column="yachtName" />
+      <result property="price" column="price" />
+      <result property="location" column="location" />
+      <result property="year" column="year" />
+      <result property="length" column="length" />
+      <result property="beam" column="beam" />
+      <result property="draft" column="draft" />
+      <result property="berths" column="berths" />
+      <result property="cabins" column="cabins" />
+      <result property="boatType" column="boatType" />  
+      <result property="yachtPic" column="yachtPic" />   <!-- 총12개 -->
+   </resultMap>
+   
+   <!-- selectOne -->
+   <select id="getYacht" resultMap="yachtResult">
+      <![CDATA[
+         SELECT * FROM YACHT WHERE YACHTPK=#{yachtPk}
+      ]]>
+   </select>
+   
+   <!-- selectAll + 검색조건으로 검색기능 -->
+   <!-- 검색조건: 지역, 제작연도, 보트타입 -->
+   <select id="getYachtList" resultType="yacht">
+      SELECT * 
+      FROM YACHT
+      WHERE 1=1
+      <if test="searchCondition == 'location'">
+         AND LOCATION LIKE '%'||#{searchKeyword}||'%'
+      </if>
+      <if test="searchCondition == 'year'">
+         AND YEAR LIKE '%'||#{searchKeyword}||'%'
+      </if>
+      <if test="searchCondition == 'boatType'">
+         AND BOATTYPE LIKE '%'||#{searchKeyword}||'%'
+      </if>
+      ORDER BY YACHTPK ASC
+   </select>
+   
+   <insert id="insertYacht">
+      INSERT INTO YACHT VALUES((SELECT NVL(MAX(yachtPk),0)+1 FROM YACHT),#{yachtName},#{yachtPic},#{price},#{location},#{year},#{length},#{beam},#{draft},#{berths},#{cabins},#{boatType})
+   </insert>
+   
+   <!-- 요트정보수정 - PK로 제작연도,요트이름, 수정 -->
+   <update id="updateYacht">
+      UPDATE YACHT SET YEAR=#{year},YACHTNAME=#{yachtName} WHERE YACHTPK=#{yachtPk}
+   </update>
+
+   <delete id="deleteYacht">
+      DELETE YACHT WHERE YACHTPK=#{yachtPk}
+   </delete>
+
+</mapper>
