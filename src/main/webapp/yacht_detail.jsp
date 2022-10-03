@@ -243,7 +243,7 @@ img {
 					<div class="col-md-8 blog-content">
 						<div>
 							<div>
-								<h1 class="yacht-title">Delta Gregory C Marshall 63m NFT</h1>
+								<h1 class="yacht-title">${data.yachtName}</h1>
 								<img alt="" src="images/yacht/${data.yachtPic}"
 									class="yacht-img">
 							</div>
