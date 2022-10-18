@@ -161,7 +161,7 @@
 	
 	//찜 기능
     $('document').ready(function(){
-        var memId=$('#memId').val();
+        var memId=$('#memId').val();     // ID가 memId인 요소(태그)의 값을 변수 memId에 저장
         var yachtPk=$('#yachtPk').val();
         
         console.log('동작시작');
