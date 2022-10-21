@@ -10,6 +10,8 @@
 
 	//response.sendRedirect("main.do");
  
-	pageContext.forward("main.do");
-
+	pageContext.forward("main.do"); 
+	
+	// 시스템에 변화o 요청 (로그인, 회원가입, 글쓰기) == redirection
+	// 시스템에 변화x 요청 (글 보기, 검색) 	    == forward
 %>
