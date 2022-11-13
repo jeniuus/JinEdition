@@ -1,4 +1,4 @@
--- [1]. 회원정보 테이블
+-- [1]. 회원정보 테이블 생성
 create table mem (
 	memId varchar(50) primary key, 
 	memPw varchar(50),
@@ -7,12 +7,12 @@ create table mem (
 	memDistin int default 0 -- 회원구분(관리자:1, 회원:0)
 );
 
--- <회원정보 테이블 조회>
+-- <회원정보 테이블 조회 Test>
 select * from mem;
--- <회원정보 테이블 삭제>
+-- <회원정보 테이블 삭제 Test>
 drop table mem cascade constraints;
 
--- <회원테이터 삽입>
+-- <회원테이터 삽입 Test>
 -- 관리자 
 insert into mem (memId,memPw,memName,memEmail,memDistin)
  values ('admin','woo950828@','관리자','soo980201@naver.com',1);
@@ -23,12 +23,12 @@ insert into mem (memId,memPw,memName,memEmail)
 insert into mem (memId,memPw,memName,memEmail)
  values ('mavely','woo950828@','마동석','dsm777@naver.com');
  
- -- <회원데이터 삭제>
+ -- <회원데이터 삭제 Test>
 delete from mem where memId='soo1256';
 
  --------------------------------------------------------
  
- -- [2]. 요트 테이블
+ -- [2]. 요트 테이블 생성
 create table yacht (
  	yachtPk int primary key, --고유번호(pk)
  	yachtName varchar(100) not null,--요트이름
@@ -45,11 +45,12 @@ create table yacht (
  	cabins int default 0, -- 객실(손님 용)
  	boatType varchar(50) --배 종류
 );
--- 요트 테이블 조회
+-- 요트 테이블 조회 Test
 select * from yacht;
--- 요트 테이블 삭제
+-- 요트 테이블 삭제 Test
 drop table yacht cascade constraints; 
 
+-- 요트 데이터 직접 삽입
 -- (1) Delta Gregory C Marshall 63m NFT
 insert into yacht (yachtPk,yachtName,yachtPic,price,location,year,length,beam,draft,berths,cabins,boatType)									 								--year	 length		      beam			 draft			
  values ((select nvl(max(yachtPk),0)+1 from yacht),'Delta Gregory C Marshall 63m NFT','Delta Gregory C Marshall 63m NFT.png','116,846,797,170','United States',2024, '207 ft (63 m)', '17 ft (5 m)', '41 ft (12 m)',0,7,'motor');
@@ -100,20 +101,22 @@ insert into yacht (yachtPk,yachtName,yachtPic,price,location,year,length,beam,dr
  
 delete from yacht where yachtPk=14; 
 -------------------------------------------- 
--- 수정
+-- 수정 Test
 update yacht set draft='xxx' where yachtPk=2;
 update yacht set yachtName='Royal Falcon FA Porsche Catamaran' where yachtPk=8;
 delete from yacht where yachtPk=1; 
 
+-- 조회 Test
 select * from yacht;
 select * from yacht where location like '%'||'t'||'%' order by yachtPk desc;
 
+-- 삭제 Test
 drop table yacht cascade constraints; 
  
 SELECT TO_CHAR(125151534, 'fm999,999,999,999') AS RESULT FROM DUAL; 
 --------------------------------------------------------
  
-  -- [3]. 판매자 테이블
+  -- [3]. 판매자 테이블 생성 (아직 구현x)
 create table seller (
 	sellerPk int primary key,
     storeName varchar(100) not null, --판매처 이름
@@ -130,7 +133,7 @@ select * from seller;
 drop table seller cascade constraints; 
 -------------------------------------------------------
 
--- [4]. 댓글 테이블
+-- [4]. 댓글 테이블 생성 (아직 구현x)
 create table reply (
 	rPk int primary key, -- 댓글 고유번호
 	
@@ -161,7 +164,7 @@ select * from reply;
 select * from user_tables;
 --------------------------------------------------------
 
--- [5]. 찜(요트)목록 테이블
+-- [5]. 찜(요트)목록 테이블 생성
 create table saved (
 	savedPk int primary key, -- 찜목록에 있는 요트의 고유번호	
 	memId varchar(50), -- (회원ID)
