@@ -15,13 +15,13 @@ drop table mem cascade constraints;
 -- <회원테이터 삽입 Test>
 -- 관리자 
 insert into mem (memId,memPw,memName,memEmail,memDistin)
- values ('admin','woo950828@','관리자','soo980201@naver.com',1);
+ values ('admin','woo123456,'관리자','soo980201@naver.com',1);
 -- 일반회원(1)
 insert into mem (memId,memPw,memName,memEmail)
- values ('soo1256','woo950828@','진현수','soo125696@gmail.com');
+ values ('soo1256','woo123456','진현수','soo125696@gmail.com');
 -- 일반회원(2) 
 insert into mem (memId,memPw,memName,memEmail)
- values ('mavely','woo950828@','마동석','dsm777@naver.com');
+ values ('mavely','woo123456','마동석','dsm777@naver.com');
  
  -- <회원데이터 삭제 Test>
 delete from mem where memId='soo1256';
